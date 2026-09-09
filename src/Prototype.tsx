@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState, type ReactNode } from "react";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -8,6 +8,7 @@ import {
   HeartFilledIcon,
   ImageIcon,
   LockClosedIcon,
+  PauseIcon,
   PlayIcon,
   ResetIcon,
 } from "@radix-ui/react-icons";
@@ -87,7 +88,29 @@ export default function Prototype() {
   const [error, setError] = useState(false);
   const [visited, setVisited] = useState<Visit[]>([]);
   const [noCount, setNoCount] = useState(0);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const musicRef = useRef<HTMLAudioElement>(null);
   const finaleUnlocked = visited.length === 3;
+
+  const toggleMusic = () => {
+    const music = musicRef.current;
+    if (!music) return;
+    if (music.paused) void music.play();
+    else music.pause();
+  };
+
+  const withMusic = (screen: ReactNode) => (
+    <>
+      <audio ref={musicRef} src="/assets/best-part.mp3" preload="metadata" loop onPlay={() => setMusicPlaying(true)} onPause={() => setMusicPlaying(false)} />
+      {page !== "lock" && (
+        <button className={`music-control ${musicPlaying ? "is-playing" : ""}`} onClick={toggleMusic} aria-label={musicPlaying ? "Pause Best Part" : "Play Best Part"}>
+          <span className="music-control-icon">{musicPlaying ? <PauseIcon /> : <PlayIcon />}</span>
+          <span><strong>Best Part</strong><small>{musicPlaying ? "Now playing" : "Tap to play"}</small></span>
+        </button>
+      )}
+      {screen}
+    </>
+  );
 
   const openPage = (next: Page) => {
     if (["letter", "songs", "memories"].includes(next)) {
@@ -102,6 +125,7 @@ export default function Prototype() {
     const next = code + value;
     setCode(next);
     if (next.length === 4) {
+      if (next === CONTENT.passcode) void musicRef.current?.play().catch(() => undefined);
       window.setTimeout(() => {
         if (next === CONTENT.passcode) setPage("home");
         else { setError(true); setCode(""); }
@@ -111,7 +135,7 @@ export default function Prototype() {
 
   const progress = useMemo(() => ["letter", "songs", "memories"].map((id) => visited.includes(id as Visit)), [visited]);
 
-  if (page === "lock") return (
+  if (page === "lock") return withMusic(
     <MobileScroll className="app-screen scrapbook-bg">
       <main className="lock-screen">
         <div className="mini-label">a little world for you</div>
@@ -132,7 +156,7 @@ export default function Prototype() {
     </MobileScroll>
   );
 
-  if (page === "home") return (
+  if (page === "home") return withMusic(
     <MobileScroll className="app-screen scrapbook-bg">
       <main className="home-screen">
         <div className="brand-script">Strawberry Scrapbook</div>
@@ -164,7 +188,7 @@ export default function Prototype() {
     </MobileScroll>
   );
 
-  if (page === "letter") return (
+  if (page === "letter") return withMusic(
     <MobileScroll className="app-screen scrapbook-bg">
       <main className="detail-screen">
         <Header title="A note for you" onBack={() => setPage("home")} />
@@ -180,7 +204,7 @@ export default function Prototype() {
     </MobileScroll>
   );
 
-  if (page === "songs") return (
+  if (page === "songs") return withMusic(
     <MobileScroll className="app-screen scrapbook-bg">
       <main className="detail-screen">
         <Header title="Press play" onBack={() => setPage("home")} />
@@ -198,7 +222,7 @@ export default function Prototype() {
     </MobileScroll>
   );
 
-  if (page === "memories") return (
+  if (page === "memories") return withMusic(
     <MobileScroll className="app-screen scrapbook-bg">
       <main className="detail-screen gallery-screen">
         <Header title="Our little gallery" onBack={() => setPage("home")} />
@@ -221,7 +245,7 @@ export default function Prototype() {
     </MobileScroll>
   );
 
-  if (page === "question") return (
+  if (page === "question") return withMusic(
     <MobileScroll className="app-screen question-bg">
       <main className="question-screen">
         <p className="eyebrow">one last thing…</p>
@@ -237,7 +261,7 @@ export default function Prototype() {
     </MobileScroll>
   );
 
-  return (
+  return withMusic(
     <MobileScroll className="app-screen celebration-bg">
       <main className="yes-screen">
         <div className="yes-burst"><HeartFilledIcon /></div>

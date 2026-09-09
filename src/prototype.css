@@ -112,6 +112,16 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .phone-scale-box:after { right:-22px; bottom:-16px; width:78px; }
 }
 .app-screen { min-height:100%; color:var(--ink); font-family:"DM Sans",sans-serif; background:#ffd6df; }
+.music-control { position:absolute; z-index:30; top:12px; right:12px; min-width:142px; min-height:46px; padding:6px 10px 6px 7px; border:1px solid rgba(184,24,61,.16); border-radius:18px; display:flex; align-items:center; gap:8px; color:var(--berry); background:rgba(255,248,238,.94); box-shadow:0 8px 20px rgba(112,38,63,.14); backdrop-filter:blur(8px); transition:translate .18s ease,scale .18s ease,box-shadow .18s ease; }
+.music-control:hover { translate:0 -2px; box-shadow:0 11px 24px rgba(112,38,63,.18); }
+.music-control:active { scale:.96; }
+.music-control:focus-visible { outline:3px solid rgba(184,24,61,.38); outline-offset:2px; }
+.music-control-icon { width:33px; height:33px; flex:0 0 33px; border-radius:12px; display:grid; place-items:center; color:#fff; background:var(--strawberry); }
+.music-control-icon svg { width:16px; height:16px; }
+.music-control>span:last-child { display:flex; flex-direction:column; align-items:flex-start; gap:2px; }
+.music-control strong { font:700 12px/1 "DM Sans",sans-serif; }
+.music-control small { color:var(--muted); font:500 9px/1 "DM Sans",sans-serif; }
+.music-control.is-playing .music-control-icon { animation:music-pulse 1.8s ease-in-out infinite; }
 .scrapbook-bg { background-color:#ffd6df; background-image:url('/assets/pink-paper-texture.png'); background-size:620px auto; }
 .lock-screen,.home-screen,.detail-screen,.question-screen,.yes-screen { min-height:100%; padding:72px 22px calc(var(--mobile-safe-area-height) + 34px); }
 h1 { font-family:"Fraunces",serif; letter-spacing:-.03em; }
@@ -272,8 +282,9 @@ h1 { font-family:"Fraunces",serif; letter-spacing:-.03em; }
 @keyframes stamp-in { from { opacity:0; scale:1.35; rotate:-8deg; } to { opacity:1; scale:1; rotate:0deg; } }
 @keyframes outside-heart-float { 0%,100% { translate:0 0; scale:1; } 45% { translate:8px -14px; scale:1.12; } 70% { translate:-4px -8px; scale:.96; } }
 @keyframes mascot-bob { 0%,100% { translate:0 0; rotate:5deg; } 50% { translate:0 -9px; rotate:1deg; } }
+@keyframes music-pulse { 0%,100% { scale:1; } 50% { scale:1.08; } }
 
 @media (prefers-reduced-motion:reduce) {
-  .app-screen,.lock-screen>*,.home-screen>*,.detail-screen>*,.question-screen>*,.yes-screen>*,.heart-seal,.heart-seal svg,.paperclip,.paperclip svg,.chapter,.journey span.done,.vinyl,.memory-card,.question-heart,.yes-burst,.yes-burst svg,.date-stamp,.phone-scale-box:before,.phone-scale-box:after { animation:none!important; }
+  .app-screen,.lock-screen>*,.home-screen>*,.detail-screen>*,.question-screen>*,.yes-screen>*,.heart-seal,.heart-seal svg,.paperclip,.paperclip svg,.chapter,.journey span.done,.vinyl,.memory-card,.question-heart,.yes-burst,.yes-burst svg,.date-stamp,.phone-scale-box:before,.phone-scale-box:after,.music-control-icon { animation:none!important; }
   .keypad button,.chapter,.song-list a,.memory-card,.primary-button,.yes-button,.maybe-button,.icon-button { transition:none!important; }
 }
