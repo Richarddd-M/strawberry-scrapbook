@@ -202,8 +202,19 @@ export default function Prototype() {
     <MobileScroll className="app-screen scrapbook-bg">
       <main className="detail-screen gallery-screen">
         <Header title="Our little gallery" onBack={() => setPage("home")} />
-        <section className="section-intro"><p className="eyebrow">tiny moments, big feelings</p><h1>Us, in little snapshots</h1><p>Replace these sample memories with your own photos before sharing.</p></section>
-        <div className="memory-collage" role="img" aria-label="Four romantic sample memories" />
+        <section className="section-intro"><p className="eyebrow">tiny moments, big feelings</p><h1>Us, in little snapshots</h1><p>A few moments I never want to forget.</p></section>
+        <section className="memory-gallery" aria-label="Our memories together">
+          <figure className="memory-card memory-card-wide"><img src="/assets/memories/memory-04.jpg" alt="Richard and his love smiling together in the car" loading="lazy" /></figure>
+          <figure className="memory-card"><img src="/assets/memories/memory-01.jpg" alt="A sweet memory of us together" loading="lazy" /></figure>
+          <figure className="memory-card"><img src="/assets/memories/memory-05.jpg" alt="A happy video-call memory" loading="lazy" /></figure>
+          <figure className="memory-card"><img src="/assets/memories/memory-02.jpg" alt="A candid moment in the car" loading="lazy" /></figure>
+          <figure className="memory-card"><img src="/assets/memories/memory-03.jpg" alt="Another candid moment together" loading="lazy" /></figure>
+          <figure className="memory-card memory-card-video">
+            <video controls playsInline preload="metadata" aria-label="A video memory of us together">
+              <source src="/assets/memories/memory-video.m4v" type="video/x-m4v" />
+            </video>
+          </figure>
+        </section>
         <p className="caption">My favourite memories are the ones with you.</p>
         <button className="primary-button" onClick={() => setPage("home")}>One page closer <ArrowRightIcon /></button>
       </main>

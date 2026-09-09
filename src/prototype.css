@@ -151,7 +151,14 @@ h1 { font-family:"Fraunces",serif; letter-spacing:-.03em; }
 .song-list a strong { font-size:14px; }.song-list a small { font-size:11px; color:var(--muted); }
 .song-list a>svg { justify-self:center; color:var(--berry); }
 .gallery-screen .section-intro { padding-top:0; }
-.memory-collage { width:100%; aspect-ratio:1/1; background:url('/assets/memory-collage.png') center/cover no-repeat; border:10px solid #fffaf5; border-radius:10px; box-shadow:0 12px 28px rgba(112,38,63,.15); transform:rotate(-1deg); }
+.memory-gallery { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.memory-card { min-width:0; margin:0; padding:7px 7px 24px; overflow:hidden; border-radius:7px 16px 8px 12px; background:#fffaf5; box-shadow:0 10px 24px rgba(112,38,63,.15); transform:rotate(-1deg); }
+.memory-card:nth-child(even) { transform:rotate(1.4deg); }
+.memory-card-wide,.memory-card-video { grid-column:1/-1; }
+.memory-card img,.memory-card video { display:block; width:100%; height:220px; border-radius:4px 10px 5px 8px; object-fit:cover; background:#2d202a; }
+.memory-card-wide img { height:300px; object-position:center 36%; }
+.memory-card-video { padding-bottom:7px; transform:rotate(.5deg); }
+.memory-card-video video { height:auto; max-height:430px; object-fit:contain; }
 .caption { text-align:center; font:600 19px "Caveat",cursive; color:var(--berry); margin:20px 0 4px; }
 
 .question-bg,.celebration-bg { background:#ffd4de url('/assets/pink-paper-texture.png') center/cover; }
