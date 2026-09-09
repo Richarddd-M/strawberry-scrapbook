@@ -3,6 +3,55 @@
 :root { --berry:#b8183d; --strawberry:#ed4165; --ink:#38213a; --muted:#765e6f; --cream:#fff8ee; --pink:#ffd7e1; --blue:#d7eff8; }
 * { box-sizing: border-box; }
 button, a { -webkit-tap-highlight-color: transparent; }
+
+/* Presentation canvas around the phone preview. */
+.phone-stage {
+  isolation:isolate;
+  background-color:#f7b8c9;
+  background-image:url('/assets/pink-paper-texture.png');
+  background-position:center;
+  background-size:760px auto;
+}
+.phone-stage:before {
+  content:"Strawberry Scrapbook";
+  position:absolute;
+  z-index:-1;
+  left:clamp(28px,8vw,130px);
+  top:50%;
+  max-width:320px;
+  color:rgba(184,24,61,.72);
+  font:700 clamp(42px,6vw,84px)/.88 "Caveat",cursive;
+  text-align:center;
+  transform:translateY(-50%) rotate(-7deg);
+}
+.phone-stage:after {
+  content:"a little world made with love";
+  position:absolute;
+  z-index:-1;
+  right:clamp(32px,9vw,150px);
+  top:50%;
+  width:220px;
+  padding:24px 20px;
+  border:2px dashed rgba(184,24,61,.42);
+  border-radius:18px 7px 20px 9px;
+  color:var(--berry);
+  background:rgba(255,248,238,.7);
+  box-shadow:0 18px 38px rgba(112,38,63,.12);
+  font:600 28px/1.05 "Caveat",cursive;
+  text-align:center;
+  transform:translateY(-50%) rotate(5deg);
+}
+.phone-scale-box {
+  filter:drop-shadow(0 28px 38px rgba(91,31,51,.25));
+}
+.device-menu-bar {
+  background:rgba(255,248,238,.74);
+  box-shadow:0 8px 24px rgba(112,38,63,.12);
+  backdrop-filter:blur(10px);
+}
+@media (max-width:900px) {
+  .phone-stage:before,.phone-stage:after { display:none; }
+}
 .app-screen { min-height:100%; color:var(--ink); font-family:"DM Sans",sans-serif; background:#ffd6df; }
 .scrapbook-bg { background-color:#ffd6df; background-image:url('/assets/pink-paper-texture.png'); background-size:620px auto; }
 .lock-screen,.home-screen,.detail-screen,.question-screen,.yes-screen { min-height:100%; padding:72px 22px calc(var(--mobile-safe-area-height) + 34px); }
