@@ -17,7 +17,7 @@ import { MobileScroll } from "./mobile";
 import "./prototype.css";
 
 const CONTENT = {
-  passcode: "0824",
+  passcode: "0826",
   herName: "Beautiful",
   yourName: "Richard",
   letter: [
