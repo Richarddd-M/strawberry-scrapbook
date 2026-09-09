@@ -92,3 +92,6 @@ h1 { font-family:"Fraunces",serif; letter-spacing:-.03em; }
 
 @media (max-width:360px) { .chapter { min-height:150px; padding:14px; }.chapter-copy strong{font-size:17px}.home-screen{padding-left:14px;padding-right:14px}.chapter-grid{gap:9px} }
 @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+.keyboard-dock[data-visible="false"] {
+  visibility: hidden;
+}

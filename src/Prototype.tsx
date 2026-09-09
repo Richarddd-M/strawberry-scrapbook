@@ -96,7 +96,7 @@ export default function Prototype() {
           <button onClick={() => digit("0")}>0</button>
           <button className="key-action" onClick={() => setCode((v) => v.slice(0, -1))} aria-label="Delete"><ResetIcon /></button>
         </div>
-        <p className="hint">Hint: change the code in <strong>CONTENT.passcode</strong></p>
+        <p className="hint">Hint: a date that means something to us.</p>
       </main>
     </MobileScroll>
   );
