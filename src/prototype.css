@@ -53,7 +53,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   box-shadow:0 0 0 2px rgba(184,24,61,.18),0 24px 60px rgba(91,31,51,.22);
 }
 .phone-device:before {
-  content:"strawberry-scrapbook.local";
+  content:"By Richard Mutakwa";
   position:absolute;
   z-index:5;
   top:14px;
