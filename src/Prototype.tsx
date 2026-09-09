@@ -100,18 +100,6 @@ export default function Prototype() {
     else music.pause();
   };
 
-  const downloadLetter = () => {
-    const text = ["My love,", ...CONTENT.letter, CONTENT.yourName].join("\n\n");
-    const url = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "love-letter-from-richard.txt";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-  };
-
   const withMusic = (screen: ReactNode) => (
     <>
       <audio ref={musicRef} src="/assets/best-part.mp3" preload="metadata" loop onPlay={() => setMusicPlaying(true)} onPause={() => setMusicPlaying(false)} />
@@ -212,7 +200,7 @@ export default function Prototype() {
           {CONTENT.letter.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           <p className="signature"><strong>{CONTENT.yourName}</strong></p>
         </article>
-        <button className="download-button" onClick={downloadLetter}><DownloadIcon /> Download my letter</button>
+        <a className="download-button" href="/assets/love-letter-from-richard.pdf" download><DownloadIcon /> Download my letter as PDF</a>
         <button className="primary-button" onClick={() => setPage("home")}>Keep going <ArrowRightIcon /></button>
       </main>
     </MobileScroll>
