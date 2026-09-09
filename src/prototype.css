@@ -44,6 +44,33 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .phone-scale-box {
   filter:drop-shadow(0 28px 38px rgba(91,31,51,.25));
 }
+.phone-scale-box:before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-55px -170px;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'%3E%3Cpath fill='%23ed4165' d='M7.5 13.5s-6-3.7-6-8.1C1.5 3 3 1.7 4.8 1.7c1.2 0 2.2.6 2.7 1.5.5-.9 1.5-1.5 2.7-1.5C12 1.7 13.5 3 13.5 5.4c0 4.4-6 8.1-6 8.1Z'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'%3E%3Cpath fill='%23fff8ee' d='M7.5 13.5s-6-3.7-6-8.1C1.5 3 3 1.7 4.8 1.7c1.2 0 2.2.6 2.7 1.5.5-.9 1.5-1.5 2.7-1.5C12 1.7 13.5 3 13.5 5.4c0 4.4-6 8.1-6 8.1Z'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'%3E%3Cpath fill='%23b8183d' d='M7.5 13.5s-6-3.7-6-8.1C1.5 3 3 1.7 4.8 1.7c1.2 0 2.2.6 2.7 1.5.5-.9 1.5-1.5 2.7-1.5C12 1.7 13.5 3 13.5 5.4c0 4.4-6 8.1-6 8.1Z'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'%3E%3Cpath fill='%23fff8ee' d='M7.5 13.5s-6-3.7-6-8.1C1.5 3 3 1.7 4.8 1.7c1.2 0 2.2.6 2.7 1.5.5-.9 1.5-1.5 2.7-1.5C12 1.7 13.5 3 13.5 5.4c0 4.4-6 8.1-6 8.1Z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:left 22% top 12%,right 16% top 28%,left 12% bottom 18%,right 22% bottom 10%;
+  background-size:34px,23px,21px,31px;
+  filter:drop-shadow(0 7px 8px rgba(112,38,63,.15));
+  animation:outside-heart-float 4.2s ease-in-out infinite;
+}
+.phone-scale-box:after {
+  content:"";
+  position:absolute;
+  z-index:3;
+  right:-145px;
+  bottom:38px;
+  width:132px;
+  aspect-ratio:1;
+  pointer-events:none;
+  background:url('/assets/strawberry-mascot.png') center/contain no-repeat;
+  filter:drop-shadow(0 14px 14px rgba(112,38,63,.2));
+  rotate:5deg;
+  animation:mascot-bob 3.6s ease-in-out infinite;
+}
 .device-menu-bar { display:none; }
 .phone-device {
   overflow:hidden;
@@ -81,6 +108,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 @media (max-width:900px) {
   .phone-stage:before,.phone-stage:after { display:none; }
+  .phone-scale-box:before { inset:-30px; opacity:.55; background-position:left top 12%,right top 28%,left bottom 18%,right bottom 10%; }
+  .phone-scale-box:after { right:-22px; bottom:-16px; width:78px; }
 }
 .app-screen { min-height:100%; color:var(--ink); font-family:"DM Sans",sans-serif; background:#ffd6df; }
 .scrapbook-bg { background-color:#ffd6df; background-image:url('/assets/pink-paper-texture.png'); background-size:620px auto; }
@@ -241,8 +270,10 @@ h1 { font-family:"Fraunces",serif; letter-spacing:-.03em; }
 @keyframes question-heart { 0%,100% { translate:0 0; scale:1; } 50% { translate:0 -6px; scale:1.06; } }
 @keyframes yes-pop { from { opacity:0; scale:.35; rotate:-16deg; } to { opacity:1; scale:1; rotate:0deg; } }
 @keyframes stamp-in { from { opacity:0; scale:1.35; rotate:-8deg; } to { opacity:1; scale:1; rotate:0deg; } }
+@keyframes outside-heart-float { 0%,100% { translate:0 0; scale:1; } 45% { translate:8px -14px; scale:1.12; } 70% { translate:-4px -8px; scale:.96; } }
+@keyframes mascot-bob { 0%,100% { translate:0 0; rotate:5deg; } 50% { translate:0 -9px; rotate:1deg; } }
 
 @media (prefers-reduced-motion:reduce) {
-  .app-screen,.lock-screen>*,.home-screen>*,.detail-screen>*,.question-screen>*,.yes-screen>*,.heart-seal,.heart-seal svg,.paperclip,.paperclip svg,.chapter,.journey span.done,.vinyl,.memory-card,.question-heart,.yes-burst,.yes-burst svg,.date-stamp { animation:none!important; }
+  .app-screen,.lock-screen>*,.home-screen>*,.detail-screen>*,.question-screen>*,.yes-screen>*,.heart-seal,.heart-seal svg,.paperclip,.paperclip svg,.chapter,.journey span.done,.vinyl,.memory-card,.question-heart,.yes-burst,.yes-burst svg,.date-stamp,.phone-scale-box:before,.phone-scale-box:after { animation:none!important; }
   .keypad button,.chapter,.song-list a,.memory-card,.primary-button,.yes-button,.maybe-button,.icon-button { transition:none!important; }
 }
