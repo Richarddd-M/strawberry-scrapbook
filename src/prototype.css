@@ -44,10 +44,50 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .phone-scale-box {
   filter:drop-shadow(0 28px 38px rgba(91,31,51,.25));
 }
-.device-menu-bar {
-  background:rgba(255,248,238,.74);
-  box-shadow:0 8px 24px rgba(112,38,63,.12);
-  backdrop-filter:blur(10px);
+.device-menu-bar { display:none; }
+.phone-device {
+  overflow:hidden;
+  border:10px solid #fff7f3;
+  border-radius:34px;
+  background:#fff7f3;
+  box-shadow:0 0 0 2px rgba(184,24,61,.18),0 24px 60px rgba(91,31,51,.22);
+}
+.phone-device:before {
+  content:"strawberry-scrapbook.local";
+  position:absolute;
+  z-index:5;
+  top:14px;
+  left:90px;
+  right:24px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(184,24,61,.14);
+  border-radius:13px;
+  color:var(--berry);
+  background:#ffe3ea;
+  font:600 13px/1 "DM Sans",sans-serif;
+  letter-spacing:.02em;
+}
+.phone-device:after {
+  content:"•••";
+  position:absolute;
+  z-index:6;
+  top:20px;
+  left:25px;
+  color:var(--strawberry);
+  font:700 19px/1 "DM Sans",sans-serif;
+  letter-spacing:5px;
+}
+.phone-bezel,.status-bar,.home-indicator-svg,.android-navigation-bar { display:none!important; }
+.phone-device .device-screen {
+  left:14px!important;
+  top:66px!important;
+  width:463px!important;
+  height:872px!important;
+  border-radius:0 0 22px 22px!important;
+  box-shadow:0 0 0 1px rgba(184,24,61,.1)!important;
 }
 @media (max-width:900px) {
   .phone-stage:before,.phone-stage:after { display:none; }
